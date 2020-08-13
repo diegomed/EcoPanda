@@ -1,8 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { get } from './core/services/base.service';
 
 function App() {
+  React.useEffect(() => {
+    get('login')
+    .then((res)=>{
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+    })
+  })
   return (
     <div className="App">
       <header className="App-header">

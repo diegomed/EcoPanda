@@ -1,5 +1,11 @@
-import server from "./base.service";
+import axios from 'axios';
 
+const BASE_URL_API = 'http://localhost:8080/api/';
+
+const server = axios.create({
+    baseURL: BASE_URL_API,
+    timeout: 10000,
+});
 server.interceptors.request.use(
     (config) => {
         // Do something before request is sent
@@ -7,6 +13,7 @@ server.interceptors.request.use(
         return config;
     }, 
     (error) => {
+        
         // Do something with request error
         // Apagar el spinner
         return Promise.reject(error);
@@ -28,3 +35,5 @@ server.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+export default server;
